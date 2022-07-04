@@ -11,14 +11,14 @@ function LoginBtn() {
         backgroundColor: "DarkSlateGray",
         alignItems: "center",
         color: "white",
-        padding: "15px 22px",
+        padding: "10px 20px",
         border: "ridge",
-        borderRadius: 10,
+        borderRadius: 5,
         marginRight: 20,
-        marginBottom: 15,
+        marginBottom: 50,
         fontSize: "medium",
         fontWeight: "700",
-        transition: "0.2",
+        transition: "0.5",
         "&:hover": {
           background: "#efefef",
           color: "#808080",
@@ -36,7 +36,7 @@ const Navbar = () => {
         <Bars />
         <NavMenu>
           <NavLink to="/" activeStyle>
-            <img src={logo} alt="mainLogo" width={200} height={80} />
+            <img src={logo} alt="mainLogo" width={200} height={75} />
           </NavLink>
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
@@ -52,3 +52,24 @@ const Navbar = () => {
 };
 
 export default Navbar;
+// import React from "react";
+// import { Link } from "react-router-dom";
+// const navbar = () => {
+//   return (
+//     <div>
+//       <li>
+//         <Link to="/">Dogs</Link>
+//       </li>
+//       <li>
+//         <Link to="/cats">Cats</Link>
+//       </li>
+//       <li>
+//         <Link to="/sheeps">Sheeps</Link>
+//       </li>
+//       <li>
+//         <Link to="/goats">Goats</Link>
+//       </li>
+//     </div>
+//   );
+// };
+// export default navbar;

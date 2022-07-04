@@ -1,5 +1,5 @@
 import React from "react";
-import { Admin, Resource } from "react-admin";
+import { Admin, Button, Resource } from "react-admin";
 import simpleRestProvider from "ra-data-json-server";
 import ServiceList from "../components/ServiceList";
 import ServiceCreate from "../components/ServiceCreate";
@@ -10,11 +10,14 @@ import UserEdit from "../components/UserEdit";
 import RatingList from "../components/RatingList";
 import RatingCreate from "../components/RatingCreate";
 import RatingEdit from "../components/RatingEdit";
+import MyLayout from "../MyLayout";
+import { theme } from "../theme";
+// import { Layout } from "../Layout";
 const restClient = simpleRestProvider("http://18.222.115.58:8086/api/v1");
-
+// layout={MyLayout}layout={Layout}
 function AppAdmin() {
   return (
-    <Admin dataProvider={restClient}>
+    <Admin layout={MyLayout} theme={theme} dataProvider={restClient}>
       <Resource
         name="services"
         list={ServiceList}
@@ -34,6 +37,7 @@ function AppAdmin() {
         edit={RatingEdit}
       />
     </Admin>
+
     // <main className="App">
     //   <Login />
     // </main>

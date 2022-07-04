@@ -5,7 +5,7 @@ const ServiceEdit = (props) => {
   return (
     <Edit title="Edit Service" {...props}>
       <SimpleForm>
-        <NumberInput source="id" />
+        <TextInput disable source="id" />
         <TextInput source="name" />
         <TextInput multiline source="description" />
         <TextInput source="image" />

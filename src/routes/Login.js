@@ -5,6 +5,7 @@ import AuthContext from "../components/Context/AuthProvider";
 
 import axios from "../api/axios";
 const LOGIN_URL = "/login";
+const ADMIN_URL = "/admin";
 
 const Login = () => {
   const userRef = useRef();
@@ -29,21 +30,28 @@ const Login = () => {
     try {
       const response = await axios.post(
         LOGIN_URL,
-        JSON.stringify({ name: user, password: pwd }),
+        JSON.stringify({ username: user, password: pwd }),
         {
           headers: { "Content-Type": "application/json" },
         }
       );
+      const access_token = response.data.accessToken;
+      localStorage.setItem("accessToken", access_token);
       console.log(JSON.stringify(response?.data));
       console.log(response.data);
+      console.log(access_token);
       // console.log(JSON.stringify(response));
-      if (response.data === "Ok") {
-        return setSuccess(true);
-      } else {
-        setErrMsg("Login failed");
-        return setSuccess(false);
-      }
-
+      axios
+        .get(ADMIN_URL, {
+          headers: { Authorization: `Bearer ${access_token}` },
+        })
+        .then((res) => {
+          if (res.data.data === "Access by using JWT successfully") {
+            return setSuccess(true);
+          } else {
+            setErrMsg("Login failed");
+          }
+        });
       setUser("");
       setPwd("");
     } catch (err) {
@@ -65,7 +73,7 @@ const Login = () => {
               fontweight: "bold",
             }}
           >
-            Logged in
+            LOGGING....
           </h1>
           <br />
           <p>
@@ -107,7 +115,7 @@ const Login = () => {
             <button>Sign In</button>
           </form>
           <p>
-            <a style={{ textAlign: "center" }} href="/">
+            <a style={{ textAlign: "center", color: "inherit" }} href="/">
               Continue as guest
             </a>
           </p>

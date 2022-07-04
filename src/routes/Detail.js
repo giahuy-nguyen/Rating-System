@@ -6,53 +6,54 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { Component } from "react";
 import { Container } from "../components/Container";
 import "./Detail.css";
+import MultipleItems from "./slickRatings";
+import moment from "moment";
+
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 var dataObj = {};
+
 function Detail() {
   const [loading, setLoading] = useState(true);
-  const { uuid } = useParams();
+  const { id } = useParams();
   const [detail, setDetail] = useState({});
   const [valuee, setValue] = React.useState("");
   const [getAvgscore, setEventStart] = useState();
   const triggerText = "Rate this service";
   const t = new Date(Date.now()).toGMTString();
+  const outputDate = moment(t).format("yyyy-MM-DD");
   const onSubmit = (event) => {
     event.preventDefault(event);
     dataObj.username = event.target.username.value;
     dataObj.comment = event.target.comment.value;
-    dataObj.date = t;
+    dataObj.date = outputDate;
     console.log(event.target.username.value);
     console.log(event.target.comment.value);
     console.log(t);
-    fetch("http://18.222.115.58:8086/api/v1/rate/insert", {
+    console.log(outputDate);
+    console.log(dataObj);
+    fetch("http://18.222.115.58:8086/api/v1/rate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      mode: "cors",
       body: JSON.stringify(dataObj), // body data type must match "Content-Type" header
     })
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
+        setTimeout(() => window.location.reload(), 2000);
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-    const answer = window.confirm("Do you want to submit this?");
-    if (answer) {
-      // Save it!
-      console.log("Thing was saved to the database.");
-      window.location.reload(false);
-    } else {
-      // Do nothing!
-      console.log("Thing was not saved to the database.");
-    }
   };
   useEffect(() => {
-    fetch(`http://18.222.115.58:8086/api/v1/services/${uuid}`)
+    fetch(`http://18.222.115.58:8086/api/v1/services/${id}`)
       .then((response) => response.json())
       .then((json) => {
         setDetail(json.data);
@@ -74,7 +75,7 @@ function Detail() {
             backgroundPosition: "left",
           }}
         >
-          <div style={{ marginLeft: "40px" }}>
+          <div style={{ marginTop: "55px", marginLeft: "40px" }}>
             <img src={detail.image} alt="pic" width={400} height={350} />
           </div>
         </div>
@@ -82,16 +83,11 @@ function Detail() {
       <div>
         <h1 style={{ marginLeft: "80px" }}>{detail.name}</h1>
         <h2>
-          <Box
-            sx={{
-              "& > legend": { mt: 3 },
-            }}
-            style={{ marginLeft: "80px" }}
-          >
-            <Typography component="legend">
+          <Box style={{ marginLeft: "80px" }}>
+            <Typography>
               Average Rating:{" "}
               <span STYLE="font-size:16.0pt; font-weight: bold;">
-                {detail.avgscore}
+                {Math.round((detail.avgscore + Number.EPSILON) * 100) / 100}{" "}
               </span>
             </Typography>
             <Rating
@@ -103,6 +99,7 @@ function Detail() {
                 dataObj.point = newValue;
                 dataObj.id = Math.floor(Math.random() * 100);
                 dataObj.serviceid = detail.id;
+                dataObj.serviceName = detail.name;
                 console.log(dataObj);
                 console.log(getAvgscore);
               }}
@@ -113,6 +110,9 @@ function Detail() {
         <h3 style={{ marginLeft: "80px" }}>Description </h3>{" "}
         <div className="font-link" style={{ marginLeft: "80px" }}>
           {detail.description}
+        </div>
+        <div>
+          <MultipleItems id={detail.id} />
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ const UserEdit = (props) => {
         <TextInput source="id" />
         <TextInput source="name" />
         <TextInput source="email" />
+        <TextInput source="role" />
       </SimpleForm>
     </Edit>
   );

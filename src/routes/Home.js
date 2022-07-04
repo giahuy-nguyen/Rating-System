@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Service from "../components/Service";
 import styles from "./Home.module.css";
-import Navbar from "../components/Navbar/NavBar";
+// import Navbar from "../components/Navbar/NavBar";
 function Home() {
   const [loading, setLoading] = useState(true);
   const [services, setServices] = useState([]);
@@ -21,11 +21,10 @@ function Home() {
         </div>
       ) : (
         <>
-          <Navbar />
           <div className={styles.services}>
             {services.map((service) => (
               <Service
-                key={service.uuid}
+                key={service.id}
                 id={service.id}
                 uuid={service.uuid}
                 serviceImg={service.image}

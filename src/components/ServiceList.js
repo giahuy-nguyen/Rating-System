@@ -6,6 +6,7 @@ import {
   NumberField,
   EditButton,
   DeleteButton,
+  CloneButton,
 } from "react-admin";
 
 const ServiceList = (props) => {
@@ -17,7 +18,8 @@ const ServiceList = (props) => {
         <TextField source="description" />
         <TextField source="image" />
         <NumberField source="avgscore" />
-        <EditButton basePath="/services" />
+        <CloneButton label="Edit" />
+        {/* <EditButton basePath="/services" /> */}
         <DeleteButton basePath="/services" />
       </Datagrid>
     </List>

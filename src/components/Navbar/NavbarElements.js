@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const Nav = styled.nav`
   background: DarkSlateGray;
-  height: 80px;
+  height: 75px;
   display: flex;
   justify-content: space-between;
   /* Third Nav */
@@ -67,7 +67,7 @@ width: 40vw; */
 export const NavBtnLink = styled(Link)`
   border-radius: 10px;
   background: DarkSlateGray;
-  padding: 15px 22px;
+  padding: 1px 2px;
   color: #ffffff;
   outline: 2;
   border: ridge;
@@ -78,7 +78,7 @@ export const NavBtnLink = styled(Link)`
   font-weight: 700;
   /* Second Nav */
   margin-left: 24px;
-  margin-bot: 30px;
+  margin-bot: 55px;
   &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;

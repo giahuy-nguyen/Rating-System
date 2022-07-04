@@ -8,7 +8,7 @@ function Service({ uuid, id, serviceImg, name, desc, avgScore }) {
   return (
     <div className={styles.service}>
       <div>
-        <Link to={`/detail/${uuid}`}>
+        <Link to={`/detail/${id}`}>
           <img
             src={serviceImg}
             width={200}
@@ -20,7 +20,7 @@ function Service({ uuid, id, serviceImg, name, desc, avgScore }) {
       </div>
       <div>
         <h2 className={styles.name}>
-          <Link to={`/detail/${uuid}`}>{name}</Link>
+          <Link to={`/detail/${id}`}>{name}</Link>
         </h2>
         <h3>
           <span>

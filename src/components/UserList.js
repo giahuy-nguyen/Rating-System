@@ -4,8 +4,8 @@ import {
   Datagrid,
   TextField,
   NumberField,
-  // EditButton,
-  // DeleteButton,
+  EditButton,
+  DeleteButton,
 } from "react-admin";
 
 const UserList = (props) => {
@@ -13,11 +13,12 @@ const UserList = (props) => {
     <List {...props}>
       <Datagrid>
         <NumberField source="id" />
+        <TextField source="name" />
         <TextField source="password" />
         <TextField source="email" />
         <TextField source="role" />
-        {/* <EditButton basePath="/users" />
-        <DeleteButton basePath="/users" /> */}
+        {/* <EditButton basePath="/user" /> */}
+        <DeleteButton basePath="/user" />
       </Datagrid>
     </List>
   );

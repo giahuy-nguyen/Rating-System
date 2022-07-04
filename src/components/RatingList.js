@@ -12,6 +12,17 @@ import {
 const RatingList = (props) => {
   return (
     <List {...props}>
+      <div style={{ display: "flex" }}>
+        <button
+          style={{ marginLeft: "auto" }}
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "/admin/alert";
+          }}
+        >
+          Rating Alert
+        </button>
+      </div>
       <Datagrid>
         <TextField source="id" />
         <TextField source="serviceid" />
@@ -19,7 +30,7 @@ const RatingList = (props) => {
         <NumberField source="point" />
         <TextField source="comment" />
         <DateField source="date" />
-        <EditButton basePath="/rating" />
+        {/* <EditButton basePath="/rating" /> */}
         <DeleteButton basePath="/rating" />
       </Datagrid>
     </List>
