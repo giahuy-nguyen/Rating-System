@@ -6,17 +6,17 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { Component } from "react";
 import { Container } from "../components/Container";
 import "./Detail.css";
-import MultipleItems from "./slickRatings";
 import moment from "moment";
-
-import { confirmAlert } from "react-confirm-alert"; // Import
+import TextField from "@material-ui/core/TextField";
+import Autocomplete, {
+  createFilterOptions,
+} from "@material-ui/lab/Autocomplete";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
 var dataObj = {};
-
+const filter = createFilterOptions();
 function Detail() {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
@@ -26,6 +26,11 @@ function Detail() {
   const triggerText = "Rate this service";
   const t = new Date(Date.now()).toGMTString();
   const outputDate = moment(t).format("yyyy-MM-DD");
+  const options = ["Security", "Performance"];
+  const handleChange = () => {
+    let { options, input } = this.state;
+    options.push(input);
+  };
   const onSubmit = (event) => {
     event.preventDefault(event);
     dataObj.username = event.target.username.value;
@@ -60,7 +65,7 @@ function Detail() {
         setLoading(false);
         setEventStart(json.data.avgscore);
       });
-  }, []);
+  });
   return (
     <div>
       {loading ? (
@@ -75,8 +80,14 @@ function Detail() {
             backgroundPosition: "left",
           }}
         >
-          <div style={{ marginTop: "55px", marginLeft: "40px" }}>
-            <img src={detail.image} alt="pic" width={400} height={350} />
+          <div style={{ marginTop: "1px", marginLeft: "30px" }}>
+            <img
+              src={detail.image}
+              alt="pic"
+              width={400}
+              height={350}
+              style={{ borderRadius: "50px" }}
+            />
           </div>
         </div>
       )}
@@ -104,6 +115,35 @@ function Detail() {
                 console.log(getAvgscore);
               }}
             />{" "}
+            <Autocomplete
+              filterOptions={(options, params) => {
+                const filtered = filter(options, params);
+                // Suggest the creation of a new value
+                if (params.inputValue !== "") {
+                  filtered.push(`Add "${params.inputValue}"`);
+                }
+                handleChange = (e) => {
+                  const { options } = this.state;
+                  options[1].name = e.target.inputValue;
+
+                  // update state
+                  this.setState({
+                    options,
+                  });
+                };
+                return filtered;
+              }}
+              selectOnFocus
+              clearOnBlur
+              handleHomeEndKeys
+              options={options}
+              renderOption={(option) => option}
+              style={{ width: 200 }}
+              freeSolo
+              renderInput={(params) => (
+                <TextField {...params} label="Others" variant="outlined" />
+              )}
+            />
             <Container triggerText={triggerText} onSubmit={onSubmit} />
           </Box>
         </h2>
@@ -111,9 +151,9 @@ function Detail() {
         <div className="font-link" style={{ marginLeft: "80px" }}>
           {detail.description}
         </div>
-        <div>
+        {/* <div>
           <MultipleItems id={detail.id} />
-        </div>
+        </div> */}
       </div>
     </div>
   );

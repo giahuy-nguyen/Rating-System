@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav, NavLink, Bars, NavMenu, NavBtn } from "./NavbarElements";
-import logo from "C:/Users/Huyyyy/rating-system/src/assets/logo.png";
+import logo from "E:/Code/Rating-System/src/assets/logo.png";
 import { Link } from "react-router-dom";
 
 function LoginBtn() {
