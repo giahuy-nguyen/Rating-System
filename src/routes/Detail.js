@@ -115,35 +115,6 @@ function Detail() {
                 console.log(getAvgscore);
               }}
             />{" "}
-            <Autocomplete
-              filterOptions={(options, params) => {
-                const filtered = filter(options, params);
-                // Suggest the creation of a new value
-                if (params.inputValue !== "") {
-                  filtered.push(`Add "${params.inputValue}"`);
-                }
-                handleChange = (e) => {
-                  const { options } = this.state;
-                  options[1].name = e.target.inputValue;
-
-                  // update state
-                  this.setState({
-                    options,
-                  });
-                };
-                return filtered;
-              }}
-              selectOnFocus
-              clearOnBlur
-              handleHomeEndKeys
-              options={options}
-              renderOption={(option) => option}
-              style={{ width: 200 }}
-              freeSolo
-              renderInput={(params) => (
-                <TextField {...params} label="Others" variant="outlined" />
-              )}
-            />
             <Container triggerText={triggerText} onSubmit={onSubmit} />
           </Box>
         </h2>
@@ -151,9 +122,6 @@ function Detail() {
         <div className="font-link" style={{ marginLeft: "80px" }}>
           {detail.description}
         </div>
-        {/* <div>
-          <MultipleItems id={detail.id} />
-        </div> */}
       </div>
     </div>
   );
