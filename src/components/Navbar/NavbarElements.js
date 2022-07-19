@@ -1,4 +1,4 @@
-import { FaBars } from "react-icons/fa";
+import { FaBars } from "npm i react-icons";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
