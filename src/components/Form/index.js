@@ -1,74 +1,66 @@
 import React from "react";
 import { useState } from "react";
+import "./Form.css";
+import { Rate } from "./Rate.js";
 
 export const Form = ({ onSubmit }) => {
-  const [serviceList, setServiceList] = useState([{ service: "" }]);
-  const handleServiceChange = (e, index) => {
+  const [optionList, setOptionList] = useState([{ option: "", rate: "" }]);
+  const handleOptionChange = (e, index) => {
     const { name, value } = e.target;
-    const list = [...serviceList];
+    const list = [...optionList];
     list[index][name] = value;
-    setServiceList(list);
+    setOptionList(list);
+    console.log(optionList.rate);
   };
 
-  const handleServiceRemove = (index) => {
-    const list = [...serviceList];
+  const handleOptionRemove = (index) => {
+    const list = [...optionList];
     list.splice(index, 1);
-    setServiceList(list);
+    setOptionList(list);
   };
 
-  const handleServiceAdd = () => {
-    setServiceList([...serviceList, { service: "" }]);
+  const handleOptionAdd = () => {
+    setOptionList([...optionList, { option: "" }]);
   };
   return (
     <form onSubmit={onSubmit}>
-      <form className="App" autoComplete="off">
-        <div className="form-field">
-          <label htmlFor="service">Service(s)</label>
-          {serviceList.map((singleService, index) => (
-            <div key={index} className="services">
-              <div className="first-division">
+      <div className="form-field">
+        <label htmlFor="option">Other option(s)</label>
+
+        {optionList.map((singleOption, index) => (
+          <div key={index} className="options">
+            <div className="first-division">
+              <div className="combined">
                 <input
-                  name="service"
+                  name="option"
                   type="text"
-                  id="service"
-                  value={singleService.service}
-                  onChange={(e) => handleServiceChange(e, index)}
+                  id="option"
+                  value={singleOption.option}
+                  onChange={(e) => handleOptionChange(e, index)}
                   required
                 />
-                {serviceList.length - 1 === index && serviceList.length < 4 && (
-                  <button
-                    type="button"
-                    onClick={handleServiceAdd}
-                    className="add-btn"
-                  >
-                    <span>Add a Service</span>
-                  </button>
-                )}
-              </div>
-              <div className="second-division">
-                {serviceList.length !== 1 && (
-                  <button
-                    type="button"
-                    onClick={() => handleServiceRemove(index)}
-                    className="remove-btn"
-                  >
-                    <span>Remove</span>
+                <Rate rate={singleOption.rate} />
+                {optionList.length - 1 === index && optionList.length < 5 && (
+                  <button onClick={handleOptionAdd} className="button">
+                    <span>Add more</span>
                   </button>
                 )}
               </div>
             </div>
-          ))}
-        </div>
-        <div className="output">
-          <h2>Output</h2>
-          {serviceList &&
-            serviceList.map((singleService, index) => (
-              <ul key={index}>
-                {singleService.service && <li>{singleService.service}</li>}
-              </ul>
-            ))}
-        </div>
-      </form>
+            <div className="second-division">
+              {optionList.length !== 1 && (
+                <button
+                  type="buttonn"
+                  onClick={() => handleOptionRemove(index)}
+                  className="remove-btn"
+                >
+                  <span>Remove</span>
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
       <div className="form-group">
         <label htmlFor="username">Your name</label>
         <input className="form-control" id="username" />

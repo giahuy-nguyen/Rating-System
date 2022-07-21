@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .App {
+    width: 70vh;
+    margin: 5rem auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-field {
+    flex: 3;
+  }
+  .output {
+    margin-left: 3rem;
+    flex: 1;
+  }
+  .form-field label,
+  h2 {
+    font-size: 30px;
+    margin: 0;
+  }
+  
+  input {
+    height: 35px;
+    width: 40%;
+    padding: 5px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid rgb(220, 220, 220);
+  }
+  
+  input:focus {
+    border: 1px solid rgb(0, 208, 255);
+  }
+  
+  .services {
+    display: flex;
+    justify-content: space-between;
+  }
+  .first-division {
+    display: flex;
+    /* flex-direction: column; */
+    margin: 0 5px 0.5rem 0;
+    width: 100%;
+  }
+  .combined {
+    display: flex;
+    width: 100%;
+  }
+  .button {
+    background: black;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 2px;
+    padding: 5px 10px;
+  }
+  .first-division button {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    color: rgb(26, 87, 100);
+    border: 1px solid rgb(0, 208, 255);
+  }
+  
+  .second-division button {
+    margin-bottom: 10px;
+    color: rgb(168, 41, 41);
+    border: 1px solid rgb(110, 65, 65);
+  }
+  .initial {
+    all: initial;
+  }
