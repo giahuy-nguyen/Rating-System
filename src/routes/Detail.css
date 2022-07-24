@@ -139,7 +139,7 @@ header h3 {
 
 [data-detail] {
   width: 90%;
-  height: 450px;
+  height: 550px;
   margin: 0 auto;
   position: relative;
   top: 50px;
@@ -153,8 +153,9 @@ header h3 {
 
 [data-detail] .img-card {
   width: 45%;
-  height: 75%;
+  height: 85%;
   margin-right: 25px;
+  margin-top: 25px;
   margin-left: -20px;
   /* border: 1px solid lightgrey; */
   border-radius: 15px;
@@ -275,7 +276,7 @@ header h3 {
 }
 
 button {
-  width: 120px;
+  width: 100px;
   height: 40px;
   font-family: 'Literata', serif;
   font-size: small;

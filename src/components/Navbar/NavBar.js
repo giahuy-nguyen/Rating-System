@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav, NavLink, Bars, NavMenu, NavBtn } from "./NavbarElements";
-import logo from "/home/huy/Documents/Rating-System/src/assets/logo.png";
+import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 
 function LoginBtn() {
@@ -11,10 +11,11 @@ function LoginBtn() {
         backgroundColor: "DarkSlateGray",
         alignItems: "center",
         color: "white",
-        padding: "10px 20px",
+        padding: "20px 20px",
         border: "ridge",
         borderRadius: 5,
         marginRight: 20,
+        marginTop: 15,
         marginBottom: 50,
         fontSize: "medium",
         fontWeight: "700",
